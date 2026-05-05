@@ -1,0 +1,159 @@
+/* =============================================
+   Área do Operador de Armazém
+============================================= */
+
+.armazem-container {
+  max-width: 1280px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.armazem-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.armazem-header h1 {
+  font-size: 2.5rem;
+  color: var(--texto-principal);
+}
+
+.armazem-header p {
+  font-size: 1.1rem;
+  color: var(--texto-secundario);
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+}
+
+/* 
+   Navegação por Abas (Operador)
+ */
+
+.armazem-tabs {
+  border-bottom: 1px solid var(--cor-borda, #dee2e6);
+  margin-bottom: 2.5rem;
+}
+
+.armazem-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.armazem-botoes button {
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--texto-secundario, #6c757d);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: -1px; /* Alinha a borda com a borda do container */
+}
+
+.armazem-botoes button:hover {
+  color: var(--cor-principal-escura, #0056b3);
+  background-color: var(--fundo-item-hover, #eef2f7);
+}
+
+.armazem-botoes button.active {
+  color: var(--cor-principal, #007bff);
+  border-bottom-color: var(--cor-principal, #007bff);
+}
+
+
+/* =============================================
+   Consultar Inventário
+============================================= */
+
+.inventario-container {
+  background-color: var(--fundo-container, #fff);
+  padding: 2rem;
+  border-radius: var(--raio-borda, 8px);
+  box-shadow: var(--shadow-soft);
+}
+
+.inventario-titulo {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.inventario-desc {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: var(--texto-secundario);
+}
+
+.inventario-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  background-color: var(--fundo-item, #f8f9fa);
+  border-radius: var(--raio-borda, 8px);
+}
+
+.filtro-grupo {
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filtro-grupo label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.filtro-grupo input,
+.filtro-grupo select {
+  padding: 0.75rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.inventario-filtros .btn-acao {
+  padding: 0.75rem 1.5rem;
+  height: fit-content;
+}
+
+/* Tabela de Inventário */
+.inv-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.inv-table th,
+.inv-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--cor-borda-suave);
+}
+
+.inv-table th {
+  background-color: var(--fundo-item);
+  font-weight: 600;
+}
+
+.inv-table tbody tr:hover {
+  background-color: var(--fundo-item-hover);
+}
+
+.inv-table .qtd-col {
+  text-align: center;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+/* Cores de estado */
+.estado-disponivel { background-color: rgba(40, 167, 69, 0.05); }
+.estado-reservado { background-color: rgba(255, 193, 7, 0.07); }
+.estado-alugado { background-color: rgba(220, 53, 69, 0.05); }

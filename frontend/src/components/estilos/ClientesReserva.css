@@ -1,0 +1,249 @@
+/* ==========================================================
+   Reservas.css — estilos da aba "Minhas Reservas"
+   ========================================================== */
+
+/* ---------- Container principal ---------- */
+.tab-content {
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: #0f172a;
+}
+
+/* ---------- Cabeçalho (título + botão Atualizar) ---------- */
+.reserva-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.reserva-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Botão de ação principal ---------- */
+.btn-acao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.btn-acao:hover:not(:disabled) {
+  background: #1e293b;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+}
+
+.btn-acao:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-acao:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-acao i {
+  font-size: 0.85rem;
+}
+
+/* spin do ícone de refresh enquanto carrega */
+.fa-spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Filtros ---------- */
+.filtros-reserva {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.filtro-btn {
+  flex: 1 1 auto;
+  min-width: 100px;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #475569;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.filtro-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.filtro-btn.ativo {
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+/* ---------- Lista de reservas ---------- */
+.reserva-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vazio {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: #64748b;
+  font-size: 0.95rem;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  margin: 0;
+}
+
+/* ---------- Card de reserva ---------- */
+.reserva-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.reserva-item:hover {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.reserva-detalhes {
+  flex: 1;
+  min-width: 0;
+}
+
+.reserva-detalhes strong {
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.reserva-detalhes p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.reserva-detalhes p i {
+  margin-right: 0.35rem;
+  color: #64748b;
+}
+
+.reserva-detalhes ul {
+  list-style: none;
+  padding-left: 0 !important;
+  margin: 0.5rem 0 !important;
+}
+
+.reserva-detalhes ul li {
+  padding: 0.25rem 0;
+  font-size: 0.875rem;
+  color: #334155;
+  border-bottom: 1px dashed #f1f5f9;
+}
+
+.reserva-detalhes ul li:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Badge de estado ---------- */
+.estado-badge {
+  align-self: flex-start;
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.estado-badge.estado-pendente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.estado-badge.estado-confirmada {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.estado-badge.estado-concluida {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.estado-badge.estado-cancelada {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 640px) {
+  .tab-content {
+    padding: 1rem;
+  }
+
+  .reserva-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reserva-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .filtros-reserva {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filtro-btn {
+    flex: 0 0 auto;
+    min-width: auto;
+  }
+
+  .reserva-item {
+    flex-direction: column;
+  }
+}

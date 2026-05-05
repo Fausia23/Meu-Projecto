@@ -1,0 +1,162 @@
+/* 
+   TAB FACTURAS
+ */
+
+.tab-facturas {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tab-facturas h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  color: #1f2937;
+}
+
+.tab-facturas h3 {
+  margin: 24px 0 12px;
+  font-size: 1.2rem;
+  color: #374151;
+}
+
+/* 
+   BLOCOS DE CONTEÚDO
+ */
+
+.bloco {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.bloco label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* ==============================
+   INPUTS & SELECT
+================================ */
+
+.bloco select,
+.bloco input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bloco select:focus,
+.bloco input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* 
+   REVISÃO DA FACTURA
+ */
+
+.bloco.revisao p {
+  margin: 6px 0;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.bloco.revisao .total {
+  margin-top: 12px;
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+/* 
+   BOTÕES
+*/
+
+.btn {
+  margin-top: 14px;
+  padding: 10px 18px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s ease;
+}
+
+.btn:hover {
+  background-color: #1d4ed8;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* 
+   TABELA DE FACTURAS
+*/
+
+.facturas-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.facturas-table thead {
+  background: #f3f4f6;
+}
+
+.facturas-table th,
+.facturas-table td {
+  padding: 12px;
+  font-size: 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.facturas-table th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.facturas-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/*
+   ESTADOS DA FACTURA
+ */
+
+.estado {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.estado.pendente {
+  background-color: #fff7ed;
+  color: #c2410c;
+}
+
+/* 
+   ESTADO VAZIO
+ */
+
+.empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 16px;
+}

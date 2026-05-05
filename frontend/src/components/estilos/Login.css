@@ -1,0 +1,189 @@
+.login-body {
+  display: flex;
+  flex-direction: column; /* Organiza os itens verticalmente */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--fundo-pagina);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px; /* Adiciona um espaçamento para evitar que o conteúdo cole nas bordas */
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 30px;
+  background: var(--fundo-container);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--shadow-hover);
+  text-align: center;
+  margin-bottom: auto; /* Empurra o rodapé para baixo */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.login-box h2 {
+  margin-bottom: 15px;
+  color: var(--texto-principal);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+  position: relative; /* Necessário para posicionar o ícone da senha */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--texto-secundario);
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.form-options {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.form-options a {
+  color: var(--cor-primaria);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.form-options a:hover {
+  color: var(--cor-primaria-escura);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px 15px;
+  background: var(--cor-primaria);
+  color: var(--texto-branco);
+  border: none;
+  border-radius: var(--raio-borda);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--cor-primaria-escura);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn-primary:disabled {
+  background: var(--cor-secundaria);
+  cursor: not-allowed;
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--texto-secundario);
+}
+
+.register-link a {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.register-link a:hover {
+  color: var(--cor-primaria-escura);
+}
+
+.footer-login {
+  width: 100%;
+  text-align: center;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  padding-top: 20px; /* Espaçamento entre o rodapé e o conteúdo acima */
+  margin-top: auto; /* Garante que ele fique no final do contêiner flex */
+}
+
+.error-message {
+  color: var(--cor-erro);
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  padding: 10px;
+  border-radius: var(--raio-borda);
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos para o ícone de ver/ocultar senha */
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--texto-secundario);
+  transition: color 0.2s;
+}
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-container input {
+  width: 100%;
+  padding-left: 40px; /* Espaço para o ícone */
+  padding-right: 40px; /* Espaço para o olho */
+}
+
+.login-icon {
+  position: absolute;
+  left: 10px;
+  color: #888;
+  font-size: 16px;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+}

@@ -1,0 +1,475 @@
+/* src/components/estilos/Reservas.css */
+
+/* ── Variáveis ──────────────────────────────────────────────────────────── */
+:root {
+  --res-laranja:    #e67e22;
+  --res-laranja-dk: #cf6d17;
+  --res-verde:      #27ae60;
+  --res-vermelho:   #e74c3c;
+  --res-cinza-lt:   #f8fafc;
+  --res-cinza-bd:   #e2e8f0;
+  --res-texto:      #1e293b;
+  --res-muted:      #64748b;
+  --res-sombra:     0 4px 24px rgba(0,0,0,.09);
+  --res-raio:       14px;
+}
+
+/* ── Layout da Página ────────────────────────────────────────────────────── */
+.reserva-pagina {
+  min-height: 100vh;
+  background: #f1f5f9;
+  padding-bottom: 4rem;
+}
+
+.reserva-header {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: #fff;
+  padding: 2rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.reserva-voltar {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  padding: .45rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .875rem;
+  width: fit-content;
+  transition: background .2s;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: .5rem;
+}
+.reserva-voltar:hover { background: rgba(255,255,255,.22); }
+
+.reserva-titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+}
+.reserva-subtitulo {
+  font-size: .95rem;
+  opacity: .75;
+  margin: 0;
+}
+
+.reserva-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+}
+
+
+
+.reserva-header {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: #fff;
+  padding: 2rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+
+  /* ✅ Adiciona estas duas linhas */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+@media (max-width: 900px) {
+  .reserva-layout { grid-template-columns: 1fr; }
+}
+
+/* ── Secções ─────────────────────────────────────────────────────────────── */
+.reserva-secao {
+  background: #fff;
+  border-radius: var(--res-raio);
+  padding: 1.5rem;
+  box-shadow: var(--res-sombra);
+  margin-bottom: 1.25rem;
+}
+.reserva-secao-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--res-texto);
+  margin: 0 0 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* ── Itens ───────────────────────────────────────────────────────────────── */
+.reserva-itens-lista { display: flex; flex-direction: column; gap: .9rem; }
+
+.reserva-item-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--res-cinza-lt);
+  border: 1px solid var(--res-cinza-bd);
+  border-radius: 10px;
+  padding: .9rem 1rem;
+  transition: box-shadow .2s;
+}
+.reserva-item-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+
+.reserva-item-img {
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.reserva-item-info { flex: 1; }
+.reserva-item-nome  { font-weight: 700; margin: 0 0 .2rem; font-size: .95rem; }
+.reserva-item-preco { color: var(--res-muted); font-size: .85rem; margin: 0 0 .25rem; }
+.reserva-item-sub   { font-size: .85rem; margin: 0; }
+.reserva-item-dias  { color: var(--res-laranja); font-weight: 600; }
+
+.reserva-item-qtd {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.reserva-qtd-btn {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--res-cinza-bd);
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  transition: border-color .15s, background .15s;
+}
+.reserva-qtd-btn:hover:not(:disabled) {
+  border-color: var(--res-laranja);
+  background: #fff8f2;
+}
+.reserva-qtd-btn:disabled { opacity: .4; cursor: default; }
+
+.reserva-item-remover {
+  background: none;
+  border: none;
+  color: var(--res-vermelho);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: .3rem;
+  border-radius: 6px;
+  transition: background .15s;
+}
+.reserva-item-remover:hover { background: #fef2f2; }
+
+.reserva-vazio { text-align: center; color: var(--res-muted); padding: 2rem 0; }
+
+/* ── Sucesso / Erro ──────────────────────────────────────────────────────── */
+.reserva-sucesso {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  color: var(--res-verde);
+  border-radius: 8px;
+  padding: .85rem 1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: .95rem;
+}
+.reserva-erro {
+  background: #fef2f2;
+  border: 1.5px solid #fca5a5;
+  color: var(--res-vermelho);
+  border-radius: 8px;
+  padding: .85rem 1rem;
+  margin-bottom: 1rem;
+  font-size: .9rem;
+}
+
+/* ── Datas ───────────────────────────────────────────────────────────────── */
+.reserva-datas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 500px) { .reserva-datas-grid { grid-template-columns: 1fr; } }
+
+.reserva-campo label {
+  display: block;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--res-muted);
+  margin-bottom: .35rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.reserva-campo input[type="date"],
+.reserva-campo input[type="email"],
+.reserva-campo input[type="text"],
+.reserva-campo input[type="password"] {
+  width: 100%;
+  padding: .65rem .85rem;
+  border: 1.5px solid var(--res-cinza-bd);
+  border-radius: 8px;
+  font-size: .95rem;
+  color: var(--res-texto);
+  background: #fff;
+  transition: border-color .2s;
+  box-sizing: border-box;
+}
+.reserva-campo input:focus {
+  outline: none;
+  border-color: var(--res-laranja);
+  box-shadow: 0 0 0 3px rgba(230,126,34,.1);
+}
+.reserva-campo input:disabled { background: var(--res-cinza-lt); cursor: not-allowed; }
+
+.reserva-dias-badge {
+  margin-top: .9rem;
+  background: #fff8f2;
+  border: 1px solid #fddbb4;
+  color: var(--res-laranja-dk);
+  border-radius: 8px;
+  padding: .55rem .85rem;
+  font-weight: 600;
+  font-size: .875rem;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+/* ── Transporte ──────────────────────────────────────────────────────────── */
+.reserva-transporte-grid {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+.reserva-transporte-card {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  padding: .85rem 1rem;
+  border: 2px solid var(--res-cinza-bd);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.reserva-transporte-card input[type="radio"] { display: none; }
+.reserva-transporte-card.selecionado {
+  border-color: var(--res-laranja);
+  background: #fff8f2;
+}
+.reserva-transporte-icon { font-size: 1.5rem; }
+.reserva-transporte-card strong { display: block; font-size: .9rem; }
+.reserva-transporte-card small  { color: var(--res-muted); font-size: .8rem; }
+
+/* ── Resumo financeiro ───────────────────────────────────────────────────── */
+.reserva-resumo-linhas { margin-bottom: .75rem; }
+.reserva-resumo-linha {
+  display: flex;
+  justify-content: space-between;
+  padding: .4rem 0;
+  font-size: .875rem;
+  color: var(--res-muted);
+  border-bottom: 1px dashed var(--res-cinza-bd);
+}
+.reserva-resumo-linha:last-child { border-bottom: none; }
+.reserva-resumo-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: .85rem 0 1rem;
+  border-top: 2px solid var(--res-cinza-bd);
+  font-size: 1rem;
+  color: var(--res-texto);
+}
+.reserva-resumo-total strong { font-size: 1.3rem; color: var(--res-laranja); }
+
+.reserva-btn-confirmar {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--res-laranja), var(--res-laranja-dk));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  transition: opacity .2s, transform .15s;
+  box-shadow: 0 4px 14px rgba(230,126,34,.35);
+}
+.reserva-btn-confirmar:hover:not(:disabled) { opacity: .92; transform: translateY(-1px); }
+.reserva-btn-confirmar:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+.reserva-auth-hint {
+  text-align: center;
+  font-size: .8rem;
+  color: var(--res-muted);
+  margin-top: .6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+}
+
+/* ── Modal de Autenticação ────────────────────────────────────────────────── */
+.reserva-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(4px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.reserva-modal-box {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2.25rem 2rem;
+  width: 100%;
+  max-width: 440px;
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,.22);
+  animation: reserva-modal-in .25s ease;
+}
+@keyframes reserva-modal-in {
+  from { transform: translateY(20px) scale(.97); opacity: 0; }
+  to   { transform: translateY(0)    scale(1);   opacity: 1; }
+}
+
+.reserva-modal-fechar {
+  position: absolute;
+  top: .9rem; right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--res-muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: .1rem .35rem;
+  border-radius: 6px;
+  transition: background .15s;
+}
+.reserva-modal-fechar:hover { background: var(--res-cinza-lt); color: var(--res-texto); }
+
+.reserva-modal-icon   { font-size: 2.5rem; text-align: center; margin-bottom: .4rem; }
+.reserva-modal-titulo { text-align: center; font-size: 1.2rem; margin: 0 0 .3rem; }
+.reserva-modal-sub    { text-align: center; color: var(--res-muted); font-size: .875rem; margin: 0 0 1.25rem; }
+
+.reserva-modal-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--res-cinza-bd);
+  margin-bottom: 1.25rem;
+}
+.reserva-modal-tab {
+  flex: 1;
+  padding: .65rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  font-weight: 700;
+  font-size: .95rem;
+  cursor: pointer;
+  color: var(--res-muted);
+  transition: color .15s, border-color .15s;
+}
+.reserva-modal-tab.ativo { color: var(--res-laranja); border-bottom-color: var(--res-laranja); }
+
+.reserva-modal-form { display: flex; flex-direction: column; gap: .85rem; }
+
+.reserva-pass-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.reserva-pass-wrap input { padding-right: 2.5rem !important; }
+.reserva-pass-toggle {
+  position: absolute;
+  right: .7rem;
+  background: none;
+  border: none;
+  color: var(--res-muted);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.reserva-erro-msg {
+  background: #fef2f2;
+  color: var(--res-vermelho);
+  border-radius: 7px;
+  padding: .55rem .85rem;
+  font-size: .875rem;
+  margin: 0;
+}
+
+.reserva-btn-primary {
+  width: 100%;
+  padding: .9rem;
+  background: linear-gradient(135deg, var(--res-laranja), var(--res-laranja-dk));
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.reserva-btn-primary:hover:not(:disabled) { opacity: .9; }
+.reserva-btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+
+.reserva-modal-link {
+  text-align: center;
+  font-size: .85rem;
+  color: var(--res-muted);
+  margin: 0;
+}
+.reserva-link-btn {
+  background: none;
+  border: none;
+  color: var(--res-laranja);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit;
+  padding: 0;
+}
+
+/* ── Carrinho: hint ──────────────────────────────────────────────────────── */
+.carrinho-hint {
+  font-size: .8rem;
+  color: var(--res-muted);
+  margin: .4rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+/* ── Carrinho: botões de quantidade ──────────────────────────────────────── */
+.carrinho-qtd-btn {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  cursor: pointer;
+  font-size: .95rem;
+  line-height: 1;
+  transition: border-color .15s;
+}
+.carrinho-qtd-btn:hover:not(:disabled) { border-color: var(--res-laranja); }
+.carrinho-qtd-btn:disabled { opacity: .4; cursor: default; }
+.carrinho-qtd-valor { font-weight: 700; min-width: 20px; text-align: center; }

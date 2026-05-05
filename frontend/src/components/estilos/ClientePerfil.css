@@ -1,0 +1,119 @@
+.perfil-container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  padding: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .perfil-container { grid-template-columns: 1fr; }
+}
+
+/* Estilo comum para as secções */
+.secao-perfil, .secao-historico {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.perfil-header, .secao-historico h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f8f9fa;
+  color: #1e293b;
+}
+
+/* Info Item */
+.info-item {
+  margin-bottom: 1.2rem;
+}
+
+.info-item span {
+  display: block;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.info-item p {
+  font-size: 1.1rem;
+  color: #334155;
+  font-weight: 500;
+}
+
+/* Botões */
+.btn-editar {
+  background: #eff6ff;
+  color: #2563eb;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-editar:hover { background: #dbeafe; }
+
+.conta-opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #e2e8f0;
+}
+
+/* Lista de Histórico */
+.historico-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.historico-card {
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 1.2rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.historico-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  border-color: #3b82f6;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.data-aluguer {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  font-size: 0.95rem;
+}
+
+.btn-cancelar-card {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+}

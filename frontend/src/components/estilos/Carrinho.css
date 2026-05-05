@@ -1,0 +1,322 @@
+/* ═══════════════════════════════════════════
+   CARRINHO — estilos completos
+═══════════════════════════════════════════ */
+
+/* Overlay / backdrop */
+.carrinho-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  backdrop-filter: blur(2px);
+}
+
+/* Painel lateral */
+.carrinho-container {
+  width: 420px;
+  max-width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.25s ease;
+  overflow: hidden;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Header ── */
+.carrinho-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: #0055bb;
+  color: white;
+}
+
+.carrinho-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.carrinho-badge {
+  background: #fff;
+  color: #0055bb;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.carrinho-fechar-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.carrinho-fechar-btn:hover { background: rgba(255,255,255,0.35); }
+
+/* ── Body (lista de itens) ── */
+.carrinho-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.carrinho-vazio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #94a3b8;
+  padding: 40px 20px;
+}
+.carrinho-vazio p { margin: 0; font-size: 0.95rem; }
+
+.carrinho-item {
+  display: flex;
+  gap: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.carrinho-item-img {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.carrinho-item-detalhes {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.carrinho-item-nome {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.carrinho-item-preco {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #0055bb;
+  font-weight: 600;
+}
+
+.carrinho-item-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.carrinho-item-qtd {
+  width: 60px;
+  padding: 5px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #1e293b;
+}
+
+.carrinho-remover-item-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.carrinho-remover-item-btn:hover { background: #fee2e2; }
+
+/* ── Secção de Datas ── */
+.carrinho-datas {
+  padding: 16px 20px;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f0f6ff;
+}
+
+.carrinho-datas-titulo {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.carrinho-datas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.carrinho-data-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.carrinho-data-grupo label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.carrinho-data-grupo input[type="date"] {
+  padding: 9px 10px;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #1e293b;
+  background: white;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.carrinho-data-grupo input[type="date"]:focus {
+  outline: none;
+  border-color: #0055bb;
+  box-shadow: 0 0 0 3px rgba(0, 85, 187, 0.1);
+}
+
+.carrinho-dias-info {
+  margin: 10px 0 0;
+  font-size: 0.83rem;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.carrinho-erro-datas {
+  margin: 8px 0 0;
+  font-size: 0.83rem;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* ── Footer ── */
+.carrinho-footer {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: white;
+}
+
+.carrinho-resumo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.carrinho-subtotal,
+.carrinho-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  color: #475569;
+}
+
+.carrinho-total {
+  font-size: 0.95rem;
+  color: #1e293b;
+  font-weight: 600;
+  padding-top: 4px;
+  border-top: 1px dashed #e2e8f0;
+  margin-top: 4px;
+}
+
+.carrinho-total-valor {
+  font-size: 1.1rem;
+  color: #0055bb;
+}
+
+.carrinho-finalizar-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #0055bb, #0044a0);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carrinho-finalizar-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+.carrinho-finalizar-btn:active { transform: translateY(0); }
+
+.btn-limpar-carrinho {
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  color: #64748b;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-limpar-carrinho:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 480px) {
+  .carrinho-container { width: 100vw; }
+  .carrinho-datas-grid { grid-template-columns: 1fr; }
+}

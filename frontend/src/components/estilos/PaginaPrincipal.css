@@ -1,0 +1,547 @@
+
+
+/* Paleta de cores, fontes e variáveis de layout */
+:root {
+  --cor-primaria: #007bff;
+  --cor-primaria-escura: #0056b3;
+  --cor-secundaria: #6c757d;
+  --cor-sucesso: #28a745;
+  --cor-erro: #dc3545;
+  --cor-aviso: #ffc107;
+  --cor-info: #17a2b8;
+
+  --fundo-pagina: #f4f7f9;
+  --fundo-container: #ffffff;
+  --fundo-item: #f8f9fa;
+  --fundo-item-hover: #eef2f7;
+
+  --white: #ffffff;
+
+  --cor-borda: #dee2e6;
+  --cor-borda-suave: #e9ecef;
+
+  --texto-principal: #212529;
+  --texto-secundario: #6c757d;
+  --texto-branco: #ffffff;
+
+  --raio-borda: 8px;
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --transition: 0.25s ease;
+
+  --font-principal: "Inter", "Poppins", sans-serif;
+}
+
+/* Reset e Estilos Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-principal);
+  background: var(--fundo-pagina);
+  color: var(--texto-principal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ======================
+   HEADER
+====================== */
+.cabecalho {
+  background: var(--fundo-container);
+  color: var(--cor-primaria-escura);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1020; /* Aumentado para garantir que fique sempre no topo */
+  box-shadow: var(--shadow-soft);
+}
+.cabecalho-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.cabecalho .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-primaria-escura);
+  text-decoration: none;
+}
+
+.menu-navegacao ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  align-items: center;
+}
+
+.hamburger-icon {
+  display: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 1010; /* Para ficar acima do menu */
+}
+
+.hamburger-icon span {
+  width: 28px;
+  height: 3px;
+  background: var(--cor-primaria-escura);
+  display: block;
+  margin: 5px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-navegacao a {
+  color: var(--texto-secundario);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.menu-navegacao a:hover {
+  color: var(--cor-primaria);
+}
+
+/* Linha de destaque para o link ativo ou no hover */
+.menu-navegacao a.active,
+.menu-navegacao a:hover {
+  color: var(--cor-primaria-escura);
+}
+
+.menu-navegacao a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cor-primaria);
+}
+
+.botao-login {
+  background: var(--cor-primaria);
+  color: var(--texto-branco);
+  padding: 10px 20px;
+  border-radius: var(--raio-borda);
+  text-decoration: none;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+/* ======================
+   MODO ESCURO PARA HEADER
+====================== */
+.cabecalho.header-dark {
+  background: #000000; /* Alterado para preto puro */
+  border-bottom: none; /* Remove a linha divisória */
+}
+
+.cabecalho.header-dark .logo,
+.cabecalho.header-dark .menu-navegacao a {
+  color: #ffffff;
+}
+
+.cabecalho.header-dark .menu-navegacao a:hover,
+.cabecalho.header-dark .menu-navegacao a.active {
+  color: #d1d5db;
+}
+.cabecalho.header-dark .menu-navegacao a.active::after {
+  background: #ffffff;
+}
+ 
+/* --- MOBILE MENU --- */
+@media (max-width: 768px) {
+  .menu-navegacao {
+    position: fixed; /* Usar fixed para cobrir a tela toda */
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100%; 
+    background: var(--cor-primaria-escura);
+    transition: 0.4s ease;
+  }
+
+  .menu-navegacao.is-active {
+    right: 0;
+  }
+
+  .menu-navegacao ul {
+    flex-direction: column;
+    padding: 80px 30px 30px; /* Mais padding no topo */
+    align-items: flex-start;
+  }
+
+  .menu-navegacao li {
+    width: 100%;
+  }
+
+  .menu-navegacao a {
+    color: var(--texto-branco);
+    font-size: 1.2rem;
+    padding: 15px 10px;
+    display: block;
+    width: 100%;
+  }
+
+  .hamburger-icon {
+    display: block;
+  }
+  .login-area {
+    display: none; /* Esconde o login do cabeçalho, pode ser movido para dentro do menu */
+  }
+}
+
+/* ======================
+   CARROSSEL PRINCIPAL
+====================== */
+.carrossel-principal {
+  box-shadow: var(--shadow-soft);
+}
+
+/* --- NOVO LAYOUT DO SLIDE --- */
+.slide-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
+  max-height: 550px;
+  background-color: var(--fundo-container);
+  overflow: hidden;
+}
+
+.slide-imagem, .slide-texto {
+  flex: 1;
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide-imagem {
+  align-items: center; /* Centraliza a imagem verticalmente */
+  /* background-color: var(--fundo-item); */
+  border-radius: 12px;
+  overflow: hidden; /* Garante que a imagem não ultrapasse a borda arredondada */
+}
+
+.slide-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.8s ease-out; /* Transição suave para o zoom */
+}
+
+.slide-texto {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.slide-texto h2 {
+  font-size: 2.5rem;
+  color: var(--cor-primaria-escura);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* Barra de destaque */
+.texto-destaque-barra {
+  width: 60px;
+  height: 4px;
+  background-color: var(--cor-aviso);
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+}
+
+.slide-texto p {
+  font-size: 1.1rem;
+  color: var(--texto-secundario);
+  max-width: 500px;
+}
+
+/* Estilo para o preço no slide */
+.slide-preco {
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #002147;
+  background-color: rgba(255, 193, 7, 0.2); /* Fundo amarelo suave e transparente */
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: inline-block; /* Para que o fundo se ajuste ao conteúdo */
+  border-left: 4px solid #ffc107; /* Destaque na borda */
+}
+ 
+/* --- CORES ALTERNADAS PARA OS SLIDES --- */
+
+/* Slide 1 (Azul): Fundo neutro com destaque azul */
+.slide-azul .slide-texto { background-color: var(--fundo-item); }
+.slide-azul .texto-destaque-barra { background-color: var(--cor-primaria-escura); }
+
+/* Slide 2 (Cinza): Fundo neutro com destaque no azul principal */
+.slide-cinza .slide-texto { background-color: var(--cor-borda-suave); }
+.slide-cinza .texto-destaque-barra { background-color: var(--cor-primaria-escura); }
+
+/* Slide 3 (Amarelo): Fundo suave com destaque no amarelo da marca */
+.slide-amarelo .slide-texto { background-color: #fffbeb; }
+.slide-amarelo .texto-destaque-barra { background-color: var(--cor-aviso); }
+
+/* Slide 4 (Azul Escuro): Slide de alto contraste */
+.slide-azul-escuro .slide-texto {
+  background-color: var();
+}
+.slide-azul-escuro .slide-texto h2 {
+  color: var();
+}
+.slide-azul-escuro .slide-texto p {
+  color: var(--cor-borda);
+}
+.slide-azul-escuro .texto-destaque-barra {
+  background-color: var(--cor-aviso);
+}
+
+/* Slide 5 (Verde): Convertido para um tom neutro e profissional */
+.slide-verde .slide-texto { background-color: var(--fundo-item); }
+.slide-verde .texto-destaque-barra { background-color: var(--cor-sucesso); }
+
+/* Ajuste geral para o preenchimento do texto com os novos fundos */
+.slide-texto {
+  padding: 3rem 4rem;
+}
+
+
+/* --- ANIMAÇÕES DE ENTRADA --- */
+.carousel .slide.selected .slide-imagem {
+  animation: fadeIn 0.8s ease-out both;
+}
+
+/* Animação de zoom na imagem ativa */
+.carousel .slide.selected .slide-imagem img {
+  transform: scale(1.05);
+}
+
+.carousel .slide.selected .slide-texto {
+  /* Apenas para garantir que o texto apareça */
+  opacity: 1; 
+}
+.carousel .slide.selected .slide-texto p,
+.carousel .slide.selected .slide-texto h2,
+.carousel .slide.selected .slide-texto .texto-destaque-barra {
+  animation: fadeInSlideUp 0.7s ease-out both;
+}
+
+.carousel .slide.selected .slide-texto .texto-destaque-barra {
+  animation-delay: 0.1s;
+}
+
+.carousel .slide.selected .slide-texto p {
+  animation-delay: 0.2s; /* Atraso para o parágrafo aparecer depois do título */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Animação de "máscara" para o texto */
+@keyframes fadeInSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Layout responsivo para o carrossel em ecrãs pequenos */
+@media (max-width: 768px) {
+  .slide-layout {
+    flex-direction: column; /* Empilha a imagem e o texto */
+    height: auto;
+    max-height: none;
+  }
+
+  .slide-imagem, .slide-texto {
+    flex: none;
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .slide-imagem img {
+    height: 40vh; /* Ajusta a altura da imagem em mobile */
+  }
+
+  .slide-texto {
+    text-align: center; /* Centraliza o texto */
+    align-items: center; /* Centraliza os itens (barra e botão) */
+  }
+}
+
+/* Estilo para as setas de navegação */
+.carrossel-principal .control-arrow {
+  background: rgba(0, 0, 0, 0.4) !important;
+  height: 60px;
+  width: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.carrossel-principal .control-arrow:hover {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Estilo para os indicadores (pontos) */
+.carrossel-principal .control-dots .dot {
+  background: rgba(255, 255, 255, 0.6) !important;
+  box-shadow: none !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.carrossel-principal .control-dots .dot.selected {
+  background: var(--cor-aviso) !important;
+}
+
+/* ======================
+   FOOTER
+====================== */
+
+
+
+.footer-wrapper * {
+  background: black !important;
+  color: white !important;
+}
+
+.footer {
+  background-color:black;
+  color: var(--texto-branco);
+  padding: 60px 0 0;
+  font-family: var(--font-principal);
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out,    transform 0.8s ease-out;
+}
+
+.footer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.conteudo-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: black;
+  color: var(--texto-branco);
+}
+  .footer-links ul li {
+    margin-bottom: 10px;
+    color: var(--texto-branco);
+  }
+
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer h3 {
+  color: var(--texto-branco);
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cor-aviso);
+  font-weight: 600;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+.footer p {
+  color: var(--texto-branco);
+  font-size: 0.95rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--texto-branco);
+}
+
+.footer-links a,
+.footer-contact p a {
+  color: var(--texto-branco);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.footer-links a:hover,
+.footer-contact p a:hover {
+  color: var(--cor-aviso);
+}
+
+.footer-bottom {
+  background-color: black;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 60px;
+  border-top: 1px solid #222; /* uma borda suave, opcional */
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texto-branco);
+}
+
+
+/* ÍCONES DE REDES SOCIAIS */
+.social-icons {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons li a {
+  color: var(--texto-branco);
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: block;
+}
+
+.social-icons li a:hover {
+  color: var(--cor-aviso);
+  transform: translateY(-3px);
+}
+.materiais-container {
+  padding: 2rem 0;
+}           

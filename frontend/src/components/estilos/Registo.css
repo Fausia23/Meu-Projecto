@@ -1,0 +1,137 @@
+/* =================================== */
+/* Estilos para Login e Registo        */
+/* =================================== */
+
+/* Variáveis de cor (assumindo que estão definidas no seu CSS global, como index.css) */
+:root {
+    --cor-principal: #3b82f6; /* Azul */
+    --cor-principal-hover: #2563eb;
+    --cor-fundo: #f1f5f9; /* Cinza claro */
+    --cor-texto: #1e293b;
+    --cor-texto-claro: #64748b;
+    --cor-sucesso: #16a34a;
+    --cor-erro: #dc2626;
+    --cor-branco: #ffffff;
+    --sombra-caixa: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--cor-fundo);
+    padding: 2rem;
+    font-family: 'Inter', sans-serif; /* Sugestão de uma fonte moderna */
+}
+
+.login-box {
+    background-color: var(--cor-branco);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra-caixa);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.login-box h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    margin-bottom: 0.5rem;
+}
+
+.login-box p {
+    color: var(--cor-texto-claro);
+    margin-bottom: 2rem;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: left;
+}
+
+.input-grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-grupo label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--cor-texto);
+}
+
+.input-grupo input {
+    padding: 0.8rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-grupo input:focus {
+    outline: none;
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.btn-login {
+    background-color: var(--cor-principal);
+    color: var(--cor-branco);
+    padding: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 1rem;
+}
+
+.btn-login:hover {
+    background-color: var(--cor-principal-hover);
+}
+
+.btn-login:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.link-alternativo {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--cor-texto-claro);
+}
+
+.link-alternativo a {
+    color: var(--cor-principal);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link-alternativo a:hover {
+    text-decoration: underline;
+}
+
+.mensagem-erro {
+    background-color: rgba(220, 38, 38, 0.1);
+    color: var(--cor-erro);
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.mensagem-sucesso {
+    background-color: rgba(22, 163, 74, 0.1);
+    color: var(--cor-sucesso);
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+}
