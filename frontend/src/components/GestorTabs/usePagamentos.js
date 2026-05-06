@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_URL } from "../../javascript/dados";
 
 export function usePagamentos() {
   const [numeroFactura, setNumeroFactura] = useState("");
@@ -14,7 +15,7 @@ export function usePagamentos() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:3001/api/faturas/numero/${numeroFactura}`);
+      const response = await fetch(`${API_URL}/faturas/numero/${numeroFactura}`);
       if (!response.ok) {
         if (response.status === 404) {
           setMensagem("Fatura não encontrada.");
@@ -25,7 +26,7 @@ export function usePagamentos() {
         return;
       }
       const data = await response.json();
-      const pagamentosResponse = await fetch(`http://localhost:3001/api/pagamentos/fatura/${data.id_fatura}`);
+      const pagamentosResponse = await fetch(`${API_URL}/pagamentos/fatura/${data.id_fatura}`);
       const pagamentosAnteriores = await pagamentosResponse.json();
       const totalPago = pagamentosAnteriores.reduce((acc, p) => acc + parseFloat(p.valor_pago), 0);
       const saldo = data.valor_total - totalPago;
@@ -47,7 +48,7 @@ export function usePagamentos() {
       return;
     }
     try {
-      await fetch("http://localhost:3001/api/pagamentos", {
+      await fetch(`${API_URL}/pagamentos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -58,7 +59,7 @@ export function usePagamentos() {
       });
       const novoSaldo = factura.saldo - pago;
       if (novoSaldo <= 0) {
-        await fetch(`http://localhost:3001/api/faturas/${factura.id_fatura}`, {
+        await fetch(`${API_URL}/faturas/${factura.id_fatura}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ status_fatura: "Paga" }),
@@ -78,7 +79,7 @@ export function usePagamentos() {
     valorPago, setValorPago,
     metodoPagamento, setMetodoPagamento,
     dataPagamento, setDataPagamento,
-    mensagem, 
+    mensagem,
     buscarFactura,
     registrarPagamento,
   };

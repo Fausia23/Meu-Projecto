@@ -4,18 +4,18 @@ import Entregas from "../components/Entregas";
 import Devolucoes from "../components/Devolucoes";
 import ConsultarReservas from "../components/ConsultarReservas";
 import ConsultarInventario from "../components/ConsultarInventario";
-import ConsultarCatalogo from "../components/ConsultarCatalogo"; // Mantido
-import "../components/estilos/OperadorArmazem.css"; // Importa os novos estilos
+import ConsultarCatalogo from "../components/ConsultarCatalogo";
+import { BASE_URL } from "../javascript/dados";
+import "../components/estilos/OperadorArmazem.css";
 
 // Funções para buscar dados da API
-// No futuro, cada componente pode ser responsável por buscar seus próprios dados
 async function fetchTodasAsReservas() {
-  const res = await fetch("http://localhost:3001/reservas");
+  const res = await fetch(`${BASE_URL}/reservas`);
   return res.json();
 }
 
 async function fetchInventario() {
-  const res = await fetch("http://localhost:3001/materiais");
+  const res = await fetch(`${BASE_URL}/materiais`);
   const materiais = await res.json();
   // Simula a estrutura de inventário que o componente espera
   return materiais.map(m => ({
@@ -29,11 +29,10 @@ async function fetchInventario() {
 }
 
 async function fetchAlugueres() {
-    // Esta função precisaria ser implementada no seu backend
-    // Por enquanto, podemos retornar um array vazio ou dados simulados
-    return [];
+  // Esta função precisaria ser implementada no seu backend
+  // Por enquanto, podemos retornar um array vazio ou dados simulados
+  return [];
 }
-
 
 export default function OperadorArmazem() {
   const [abaAtiva, setAbaAtiva] = useState("entregas");
@@ -59,12 +58,10 @@ export default function OperadorArmazem() {
       case "entregas":
         return <Entregas onEntregaRegistrada={recarregarDados} />;
       case "devolucoes":
-        // O componente Devolucoes precisa dos alugueres ativos
         return <Devolucoes alugueres={alugueres} onDevolucaoRegistrada={recarregarDados} />;
       case "consultar-reservas":
         return <ConsultarReservas fetchReservas={fetchTodasAsReservas} />;
       case "consultar-inventario":
-        // Passamos o inventário atualizado para o componente
         return <ConsultarInventario inventarioInicial={inventario} />;
       case "catalogo":
         return <ConsultarCatalogo />;
@@ -79,9 +76,7 @@ export default function OperadorArmazem() {
         <h1>Portal do Operador de Armazém</h1>
         <p>Gestão de entregas, devoluções e inventário de materiais.</p>
       </header>
-
       <Tabs active={abaAtiva} onChange={setAbaAtiva} />
-
       <div className="conteudo-principal">
         {renderizarConteudo()}
       </div>

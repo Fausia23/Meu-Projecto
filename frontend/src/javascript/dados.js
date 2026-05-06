@@ -1,10 +1,10 @@
 // src/javascript/dados.js
+// src/javascript/dados.js
 
-export const API_URL = "http://localhost:3001/api";
-export const BASE_URL = "http://localhost:3001";
-/* 
-   API - Funções de acesso aos Materiais
- */
+const BACKEND = import.meta.env.VITE_API_URL || "http://localhost:3001";
+export const BASE_URL = BACKEND;
+export const API_URL = `${BACKEND}/api`;
+  
 
 /**
  * Busca todos os materiais da API.

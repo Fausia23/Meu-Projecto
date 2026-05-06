@@ -44,14 +44,31 @@ const PORT   = process.env.PORT || 3001;
 const buildPath   = path.resolve(__dirname, "..", "build");
 const uploadsPath = path.join(__dirname, "uploads");
 
-// 🔍 DEBUG inicial
+// DEBUG inicial
 console.log("[server] uploadsPath:", uploadsPath);
 console.log("[server] uploadsPath existe?", fs.existsSync(uploadsPath));
 
-// CORS
+// CORS — aceita múltiplas origens (local + produção)
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173", // porta alternativa do Vite
+  process.env.FRONTEND_URL, // URL do frontend em produção (definida no Render)
+].filter(Boolean); // remove valores undefined
+
+console.log("[server] CORS allowed origins:", allowedOrigins);
+
 app.use(cors({
-  origin: ["http://localhost:3000"],
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  origin: function (origin, callback) {
+    // Permite pedidos sem origin (ex: Postman, apps nativas)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error("Origem não permitida pelo CORS: " + origin));
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -67,16 +84,16 @@ export function enviarNotificacao(msg) {
   clients.forEach((c) => { if (c.readyState === 1) c.send(msg); });
 }
 
-// ─── FICHEIROS ESTÁTICOS (antes das rotas) ───
+// FICHEIROS ESTÁTICOS (antes das rotas)
 app.use("/uploads", express.static(uploadsPath, { fallthrough: false }));
 app.use(express.static(buildPath));
 
-// ─── ROTAS PÚBLICAS ───
+// ROTAS PÚBLICAS
 app.use("/api/login",     LoginRota);
 app.use("/api/uploads",   uploadsRouter);
 app.use("/api/materiais", materialRota);
 
-// ─── ROTAS PROTEGIDAS ───
+// ROTAS PROTEGIDAS
 app.use("/api/admin/usuarios",  verificarAcesso(["admin"]),                                  adminUsuarioRota);
 app.use("/api/clientes",        verificarAcesso(["admin","gestor","cliente","funcionario"]), clienteRota);
 app.use("/api/reservas",        verificarAcesso(["admin","gestor","cliente","funcionario"]), reservaRota);
@@ -93,7 +110,7 @@ app.use("/api/usuarios",        verificarAcesso(["admin","gestor"]),            
 app.use("/api/faturas",         verificarAcesso(["admin","gestor"]),                         faturaRota);
 app.use("/api/relatorios",      verificarAcesso(["admin","gestor"]),                         relatorioRota);
 
-// ─── CATCH-ALL React Router (exclui /api E /uploads) ───
+// CATCH-ALL React Router (exclui /api E /uploads)
 app.get(/^(?!\/(api|uploads)).*/, (req, res) => {
   const indexPath = path.join(buildPath, "index.html");
   if (fs.existsSync(indexPath)) {
